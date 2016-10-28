@@ -9,13 +9,11 @@ const harvester = {
 		}
 		else {
 
-			const tower = Game.getObjectById('5805a2f1c364e9ff3aac2e5f'); //TODO: fix this and take it out.
-			let targets = [];
+			let targets = creep.room.find(FIND_STRUCTURES, {
+				filter: structure => (structure.structureType === STRUCTURE_TOWER && (structure.energy / structure.energyCapacity) < 0.2)
+			});
 
-			if ((tower.energy / tower.energyCapacity) < 0.25){
-				targets.push(tower);
-			} else {
-
+			if (!targets.length){
 				targets = creep.room.find(FIND_STRUCTURES, {
 					filter: structure => {
 						return (structure.structureType === STRUCTURE_EXTENSION ||
@@ -28,10 +26,6 @@ const harvester = {
 			if (targets.length) {
 				if (creep.transfer(targets[0], RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
 					creep.moveTo(targets[0]);
-				}
-			} else if (tower.energy < tower.energyCapacity){
-				if (creep.transfer(tower, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-					creep.moveTo(tower);
 				}
 			} else {
 				creep.say('waiting');
