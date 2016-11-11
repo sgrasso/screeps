@@ -4,20 +4,17 @@ const runner = {
 
 	/** @param {Creep} creep **/
 	run: creep => {
-		let targets = null;
 
-		if ((creep.memory.working || creep.memory.working == null) && creep.carry.energy === 0) {
-			creep.memory.working = false;
-		} 
-		if (!creep.memory.working && creep.carry.energy === creep.carryCapacity) {
-			creep.memory.working = true;
-		}
 		
-		if (creep.memory.working) {
-		
+		if (_.sum(creep.carry) < creep.carryCapacity){
+			if (creep.withdraw(creep.memory.assignment, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE){
+				creep.moveTo(creep.memory.assignment, {reusePath: 20, serializeMemory: true});
+			}
 		} else {
+			//offload
+			
 
-			creep.harvestNearestResource();
+			// creep.harvestNearestResource();
 		}
 	}
 };

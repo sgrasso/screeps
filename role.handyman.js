@@ -6,13 +6,8 @@ const handyman = {
 	/* TODO: Remove hardcoded values */
 	run: creep => {
 
-		if ((creep.memory.working || creep.memory.working == null) && creep.carry.energy === 0) {
-			creep.memory.working = false;
-		} 
-		if (!creep.memory.working && creep.carry.energy === creep.carryCapacity) {
-			creep.memory.working = true;
-		}
-
+		creep.workStatus();
+		
 		if (creep.memory.working){
 
 			let targets = [];

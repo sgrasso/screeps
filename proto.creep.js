@@ -9,16 +9,26 @@ Creep.prototype.harvestNearestResource = function() {
 		});
 		if (con.length){
 			if (this.withdraw(con[0], RESOURCE_ENERGY) === ERR_NOT_IN_RANGE){
-				this.moveTo(con[0]);
+				this.moveTo(con[0], {reusePath: 20, serializeMemory: true});
 			}
 			return;
 		}
 	}
-	const source = this.room.find(FIND_SOURCES);
-	if (this.harvest(source[0]) === ERR_NOT_IN_RANGE) {
-		this.moveTo(source[0]);
+	const source = this.pos.findClosestByRange(FIND_SOURCES_ACTIVE);
+	if (this.harvest(source) === ERR_NOT_IN_RANGE) {
+		this.moveTo(source, {reusePath: 50, serializeMemory: true});
 	}
 };
+
+Creep.prototype.workStatus = function() {
+	if ((this.memory.working || this.memory.working == null) && this.carry.energy === 0) {
+		this.memory.working = false;
+	} 
+	if (!this.memory.working && this.carry.energy === this.carryCapacity) {
+		this.memory.working = true;
+	}
+};
+
 
 Creep.prototype.buildRoads = function() {
 

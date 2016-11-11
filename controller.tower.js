@@ -12,7 +12,7 @@ const towers = {
 		//TODO: Is Tower Empty check.
 		if (tower.attackHostileCreep())
 			return;
-		if (tower.rescueRampart(20000))
+		if (tower.repairRampart(20000))
 			return;
 		if (tower.repairStructure(130000))
 			return;

@@ -32,7 +32,7 @@ const towerController = require('controller.tower');
 
 module.exports.loop = function () {
 
-	if (ticksToWait(20)) {
+	if (ticksToWait(10)) {
 		gravedigger.bury();
 		spawn.generate(roles);
 	}

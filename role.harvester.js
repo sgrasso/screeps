@@ -6,8 +6,7 @@ const harvester = {
 	run: creep => {
 		if (creep.carry.energy < creep.carryCapacity) {
 			creep.harvestNearestResource();
-		}
-		else {
+		} else {
 
 			let targets = creep.room.find(FIND_STRUCTURES, {
 				filter: structure => (structure.structureType === STRUCTURE_TOWER && (structure.energy / structure.energyCapacity) < 0.2)

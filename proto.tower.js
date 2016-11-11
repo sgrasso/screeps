@@ -37,7 +37,7 @@ StructureTower.prototype.repairWall = function (max) {
 	);
 };
 
-StructureTower.prototype.rescueRampart = function (max) {
+StructureTower.prototype.repairRampart = function (max) {
 	max = max || 0;
 	let structures = this.room.find(FIND_STRUCTURES, {
 		filter: structure => structure.structureType === STRUCTURE_RAMPART && structure.hits <= RAMPART_DECAY_AMOUNT && structure.hits < max

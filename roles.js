@@ -22,25 +22,25 @@ const roles = {
 		rallyFlag: 'rally1'
 	},
 	upgrader: {
-		min: 2,
+		min: 6,
 		body: [MOVE,WORK,WORK,CARRY],
 		preferContainer: true,
 		rallyFlag: 'rally1'
 	},
 	guard: {
-		min: 1,
+		min: 0,
 		body: [TOUGH, MOVE, ATTACK, ATTACK],
 		preferContainer: false,
 		rallyFlag: 'rally2'
 	},
 	handyman: {
-		min: 2,
+		min: 1,
 		body: [MOVE,WORK,WORK,CARRY],
 		preferContainer: false,
 		rallyFlag: 'rally1'
 	},
 	foreman: {
-		min: 2,
+		min: 1,
 		body: [MOVE,WORK,WORK,CARRY],
 		preferContainer: false,
 		rallyFlag: 'rally1'

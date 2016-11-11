@@ -4,23 +4,31 @@ const foreman = {
 
 	/** @param {Creep} creep **/
 	run: creep => {
-		let targets = null;
+		creep.workStatus();
 
-		if ((creep.memory.working || creep.memory.working == null) && creep.carry.energy === 0) {
-			creep.memory.working = false;
-		} 
-		if (!creep.memory.working && creep.carry.energy === creep.carryCapacity) {
-			creep.memory.working = true;
-		}
-		
-		targets = (creep.memory.working) ? creep.pos.findClosestByRange(FIND_MY_CONSTRUCTION_SITES) : creep.room.find(FIND_SOURCES)[0];
+		let targets = creep.pos.findClosestByRange(FIND_MY_CONSTRUCTION_SITES);
+		// let targets = creep.pos.find(FIND_MY_CONSTRUCTION_SITES);
+
+		// targets = _.sortBy(structures,
+		// 	structure => {
+		// 		const creeps = creep.room.find(FIND_MY_CREEPS, {
+		// 			filter: creep => creep.memory.harvestSource === structure.id
+		// 		});
+		// 		return structure;
+		// 	}
+		// );
 
 		if (targets != null) {
+
 			if (creep.memory.working) {
 				if (creep.build(targets) === ERR_NOT_IN_RANGE)
 					creep.moveTo(targets);
 			} else {
-				creep.harvestNearestResource();
+				const source = Game.getObjectById('57ef9ef686f108ae6e610318');
+				if (creep.harvest(source) === ERR_NOT_IN_RANGE) {
+					creep.moveTo(source, {reusePath: 8, serializeMemory: true});
+				}
+				// creep.harvestNearestResource();
 			}
 		} else {
 			creep.say('waiting');

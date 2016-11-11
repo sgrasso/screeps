@@ -10,9 +10,9 @@ global.ticksToWait = ticks => {
 	return Game.time % ticks === 0;
 };
 
-global.distance = function (room) {
+global.distance = function (room, structure_type) {
 	let sources = room.find(FIND_SOURCES);
-	let offloadPoints=  room.find(FIND_STRUCTURES, {
+	let offloadPoints =  room.find(FIND_STRUCTURES, {
 		filter: function(object) {
 			return (object.structureType == STRUCTURE_SPAWN
 					|| object.structureType == STRUCTURE_EXTENSION);
