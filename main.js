@@ -32,10 +32,10 @@ const towerController = require('controller.tower');
 
 module.exports.loop = function () {
 
-	if (ticksToWait(10)) {
+// 	if (ticksToWait(10)) {
 		gravedigger.bury();
-		spawn.generate(roles);
-	}
+// 		spawn.generate(roles);
+// 	}
 
 	_.each(Game.rooms, room => {
 		if (room.controller && room.controller.my){
@@ -45,6 +45,7 @@ module.exports.loop = function () {
 
 	for (const name in Game.creeps) {
 		const creep = Game.creeps[name];
-		role[creep.memory.role].run(creep);
+		if (role[creep.memory.role])
+		    role[creep.memory.role].run(creep);
 	}
 }

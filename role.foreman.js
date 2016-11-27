@@ -4,8 +4,11 @@ const foreman = {
 
 	/** @param {Creep} creep **/
 	run: creep => {
+	    
 		creep.workStatus();
-
+		
+        let priorities = ['STRUCTURE_TOWER','STRUCTURE_RAMPART','STRUCTURE_EXTENSION'];
+        
 		let targets = creep.pos.findClosestByRange(FIND_MY_CONSTRUCTION_SITES);
 		// let targets = creep.pos.find(FIND_MY_CONSTRUCTION_SITES);
 
@@ -24,11 +27,11 @@ const foreman = {
 				if (creep.build(targets) === ERR_NOT_IN_RANGE)
 					creep.moveTo(targets);
 			} else {
-				const source = Game.getObjectById('57ef9ef686f108ae6e610318');
-				if (creep.harvest(source) === ERR_NOT_IN_RANGE) {
-					creep.moveTo(source, {reusePath: 8, serializeMemory: true});
-				}
-				// creep.harvestNearestResource();
+				// const source = Game.getObjectById('57ef9ca886f108ae6e60c9a0');
+				// if (creep.harvest(source) === ERR_NOT_IN_RANGE) {
+				// 	creep.moveTo(source);
+				// }
+				creep.harvestNearestResource();
 			}
 		} else {
 			creep.say('waiting');

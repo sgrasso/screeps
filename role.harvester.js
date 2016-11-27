@@ -4,8 +4,14 @@ const harvester = {
 
 	/** @param {Creep} creep **/
 	run: creep => {
+	    creep.assign(FIND_SOURCES_ACTIVE);
+	    console.log(creep.memory.assignment);
 		if (creep.carry.energy < creep.carryCapacity) {
-			creep.harvestNearestResource();
+		    if (creep.harvest(Game.getObjectById(creep.memory.assignment), RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+				creep.moveTo(Game.getObjectById(creep.memory.assignment));
+			}
+// 			creep.harvestNearestResource();
+            
 		} else {
 
 			let targets = creep.room.find(FIND_STRUCTURES, {

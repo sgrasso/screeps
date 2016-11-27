@@ -22,7 +22,7 @@ const roles = {
 		rallyFlag: 'rally1'
 	},
 	upgrader: {
-		min: 6,
+		min: 4,
 		body: [MOVE,WORK,WORK,CARRY],
 		preferContainer: true,
 		rallyFlag: 'rally1'
@@ -40,7 +40,7 @@ const roles = {
 		rallyFlag: 'rally1'
 	},
 	foreman: {
-		min: 1,
+		min: 2,
 		body: [MOVE,WORK,WORK,CARRY],
 		preferContainer: false,
 		rallyFlag: 'rally1'

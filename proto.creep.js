@@ -29,6 +29,19 @@ Creep.prototype.workStatus = function() {
 	}
 };
 
+Creep.prototype.assign = function(obj) {
+    if (!this.memory.assignment){
+        const targets = this.room.find(obj);
+        for (let i = 0; i < targets.length; i++) {
+            if (!this.room.memory[targets[i].id] || !Game.getObjectById(targets[i].id)){
+    		    this.memory.assignment = targets[i].id;
+    		    this.room.memory[targets[i].id] = this.id;
+    		    return true;
+    		}
+    	}
+    }
+    return true;
+};
 
 Creep.prototype.buildRoads = function() {
 
